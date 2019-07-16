@@ -69,7 +69,7 @@ namespace Chinese
                 nextword_idx = nextWordList.Count - 1;
             }
             word_curr = nextWordList.ElementAt(nextword_idx);
-            word_curr.PartOfSpeech = previous_fs;
+            word_curr.PartOfSpeech[0] = previous_fs;
             show_word();
 
         }
@@ -90,7 +90,7 @@ namespace Chinese
             }
 
             word_curr = nextWordList.ElementAt(nextword_idx);
-            word_curr.PartOfSpeech = previous_fs;
+            word_curr.PartOfSpeech[0] = previous_fs;
             show_word();
         }
 
@@ -110,7 +110,7 @@ namespace Chinese
             nextword_idx = rnd.Next(0, nextWordList.Count);
 
             word_curr = nextWordList.ElementAt(nextword_idx);
-            word_curr.PartOfSpeech = previous_fs;
+            word_curr.PartOfSpeech[0] = previous_fs;
             show_word();
         }
 
@@ -144,7 +144,7 @@ namespace Chinese
             {
                 if (previous_fs == "")
                 {
-                    previous_fs = word_curr.PartOfSpeech;
+                    previous_fs = word_curr.PartOfSpeech[0];
                 }
                 for (int i = 0; i < Filters.Items.Count; i++)
                 {
@@ -197,7 +197,7 @@ namespace Chinese
             foreach (var w in wordList)
             {
                 for (int gi = 0; gi < w.Meaning.Length; gi++)
-                    if (String.Equals(w.Meaning, this.SearchBox.Text, StringComparison.OrdinalIgnoreCase))
+                    if (String.Equals(w.Meaning[0], this.SearchBox.Text, StringComparison.OrdinalIgnoreCase))
                     {
                         word_curr = w;
                         show_word();
@@ -238,8 +238,8 @@ namespace Chinese
                 Word w = new Word();
                 w.Pinyin = dr.ItemArray[0].ToString();
                 w.Character = dr.ItemArray[1].ToString();
-                w.Meaning = dr.ItemArray[2].ToString();
-                w.PartOfSpeech = dr.ItemArray[3].ToString();
+                w.Meaning[0] = dr.ItemArray[2].ToString();
+                w.PartOfSpeech[0] = dr.ItemArray[3].ToString();
                 w.Formality = dr.ItemArray[4].ToString();
                 wordList.Add(w);
             }

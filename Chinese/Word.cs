@@ -14,9 +14,9 @@ namespace Chinese
         {
             Pinyin = P;
             Character = C;
-            Meaning = M;
+            Meaning[0] = M;
             Formality = F;
-            PartOfSpeech = PS;
+            PartOfSpeech[0] = PS;
             Book = 0;
             Kewen = 0;
         }
@@ -34,8 +34,8 @@ namespace Chinese
 
         public string Pinyin { get; set; }
         public string Character { get; set; }
-        public string Meaning { get; set; }
-        public string PartOfSpeech { get; set; }
+        public string[] Meaning { get; set; }
+        public string[] PartOfSpeech { get; set; }
         public string Formality { get; set; }
         public int Book { get; set; }
         public int Kewen { get; set; }
