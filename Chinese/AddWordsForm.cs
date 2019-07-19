@@ -39,9 +39,8 @@ namespace Chinese
 
                         writer.WriteElementString("Pinyin", word.Pinyin);
                         writer.WriteElementString("Character", word.Character);
-                        writer.WriteElementString("Meaning", word.Meaning);
-                        writer.WriteElementString("PartOfSpeech", word.PartOfSpeech);
-                        writer.WriteElementString("PartOfSpeech", word.PartOfSpeech);
+                        writer.WriteElementString("Meaning", word.Meaning.ToString());
+                        writer.WriteElementString("PartOfSpeech", word.PartOfSpeech.ToString());
                         writer.WriteElementString("Formality", word.Formality);
                         writer.WriteElementString("Book", word.Book.ToString());
                         writer.WriteElementString("Kewen", word.Kewen.ToString());
@@ -68,9 +67,9 @@ namespace Chinese
             Word w = new Word();
             w.Pinyin = this.Pinyin.Text;
             w.Character = this.Hanzi.Text;
-            w.Meaning = this.Meaning.Text;
+            w.Meaning = new string[] { this.Meaning.Text };
             w.Formality = this.Formality.Text;
-            w.PartOfSpeech = this.PartOfSpeech.Text;
+            w.PartOfSpeech = new string[] { this.PartOfSpeech.Text };
             w.Book = Int32.Parse(this.Book.Text);
             w.Kewen = Int32.Parse(this.Kewen.Text);
             WordList.Add(w);

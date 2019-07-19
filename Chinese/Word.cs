@@ -10,26 +10,28 @@ namespace Chinese
     {
         public Word() { }
 
-        public Word(string P, string C, string M, string PS, string F)
+        public Word(string P, string C, string[] M, string[] PS, string F)
         {
-            Pinyin = P;
-            Character = C;
-            Meaning[0] = M;
-            Formality = F;
-            PartOfSpeech[0] = PS;
-            Book = 0;
-            Kewen = 0;
+            this.Pinyin = P;
+            this.Character = C;
+            this.Meaning = M;
+            this.PartOfSpeech = PS;
+            this.Formality = F;
+            this.Book = 0;
+            this.Unit = 0;
+            this.Kewen = 0;
         }
 
-        public Word(string P, string C, string[] M, string[] PS, string F, int B, int K)
+        public Word(string P, string C, string[] M, string[] PS, string F, int B, int U, int K)
         {
-            Pinyin = P;
-            Character = C;
-            Meaning = M;
-            Formality = F;
-            PartOfSpeech = PS;
-            Book = B;
-            Kewen = K;
+            this.Pinyin = P;
+            this.Character = C;
+            this.Meaning = M;
+            this.Formality = F;
+            this.PartOfSpeech = PS;
+            this.Book = B;
+            this.Unit = U;
+            this.Kewen = K;
         }
 
         public string Pinyin { get; set; }
@@ -38,6 +40,7 @@ namespace Chinese
         public string[] PartOfSpeech { get; set; }
         public string Formality { get; set; }
         public int Book { get; set; }
+        public int Unit { get; set; }
         public int Kewen { get; set; }
     }
 }
