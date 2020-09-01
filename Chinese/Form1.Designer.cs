@@ -2,6 +2,9 @@
 
 namespace Chinese
 {
+    /// <summary>
+    /// constructor
+    /// </summary>
     partial class Form1
     {
         /// <summary>
@@ -14,8 +17,6 @@ namespace Chinese
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         /// 
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -454,7 +455,7 @@ namespace Chinese
         }
 
         #endregion
-                
+
         private System.Windows.Forms.TextBox PinYinTextBox;
         private System.Windows.Forms.TextBox MeaningTextBox;
         private System.Windows.Forms.TextBox CharactersTextBox;

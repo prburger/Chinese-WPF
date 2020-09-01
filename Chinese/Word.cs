@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Chinese
 {
+    /// <summary>
+    /// The word.
+    /// </summary>
     public class Word
     {
         public Word() { }

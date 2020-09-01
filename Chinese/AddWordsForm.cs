@@ -11,6 +11,9 @@ using System.Xml;
 
 namespace Chinese
 {
+    /// <summary>
+    /// The add words form.
+    /// </summary>
     public partial class AddWordsForm : Form
     {
         Form1 _parent;

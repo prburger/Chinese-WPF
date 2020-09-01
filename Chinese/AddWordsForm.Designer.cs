@@ -1,5 +1,8 @@
 ﻿namespace Chinese
 {
+    /// <summary>
+    /// Constructor
+    /// </summary>
     partial class AddWordsForm
     {
         /// <summary>
@@ -188,7 +191,7 @@
             this.AddToWordList.TabIndex = 16;
             this.AddToWordList.Text = "Add";
             this.AddToWordList.UseVisualStyleBackColor = true;
-            this.AddToWordList.Click += new System.EventHandler(this.AddToWordList_Click);           
+            this.AddToWordList.Click += new System.EventHandler(this.AddToWordList_Click);
             // 
             // AddWordsForm
             // 
@@ -222,7 +225,7 @@
         #endregion
 
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button CancelButton;
+        private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox Formality;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Hanzi;

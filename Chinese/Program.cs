@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace Chinese
 {
+    /// <summary>
+    /// The program.
+    /// </summary>
     static class Program
     {
         /// <summary>
