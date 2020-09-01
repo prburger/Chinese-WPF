@@ -104,14 +104,10 @@ namespace Chinese
             // 
             // nextWord
             // 
-            this.nextWord.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextWord.Location = new System.Drawing.Point(718, 399);
+            this.nextWord.Location = new System.Drawing.Point(0, 0);
             this.nextWord.Name = "nextWord";
-            this.nextWord.Size = new System.Drawing.Size(34, 22);
-            this.nextWord.TabIndex = 3;
-            this.nextWord.Text = ">";
-            this.nextWord.UseVisualStyleBackColor = true;
-            this.nextWord.Click += new System.EventHandler(this.nextWord_Click);
+            this.nextWord.Size = new System.Drawing.Size(75, 23);
+            this.nextWord.TabIndex = 25;
             // 
             // label1
             // 
@@ -231,13 +227,10 @@ namespace Chinese
             // 
             // prevWord
             // 
-            this.prevWord.Location = new System.Drawing.Point(681, 399);
+            this.prevWord.Location = new System.Drawing.Point(0, 0);
             this.prevWord.Name = "prevWord";
-            this.prevWord.Size = new System.Drawing.Size(31, 22);
-            this.prevWord.TabIndex = 20;
-            this.prevWord.Text = "<";
-            this.prevWord.UseVisualStyleBackColor = true;
-            this.prevWord.Click += new System.EventHandler(this.prevWord_Click);
+            this.prevWord.Size = new System.Drawing.Size(75, 23);
+            this.prevWord.TabIndex = 24;
             // 
             // Pinyin
             // 
@@ -288,6 +281,7 @@ namespace Chinese
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -304,6 +298,7 @@ namespace Chinese
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -423,7 +418,6 @@ namespace Chinese
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
-
             // 
             // Form1
             // 
