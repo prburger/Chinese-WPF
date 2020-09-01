@@ -9,7 +9,6 @@ using System.Xml;
 
 namespace Chinese
 {
-
     /// <summary>
     /// Class
     /// </summary>
@@ -19,16 +18,17 @@ namespace Chinese
         /// The default list.
         /// </summary>
         public const string defaultList = "wordlist.xml";
+
         public string WordListFileName = "";
-        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
         public List<Word> wordList = new List<Word>();
         public List<Word> nextWordList = new List<Word>();
 
-        Random rnd = new Random();
-        int word_idx = 0;
-        int nextword_idx = 0;
-        Word word_curr;
-        string previous_fs = "";
+        private Random rnd = new Random();
+        private int word_idx = 0;
+        private int nextword_idx = 0;
+        private Word word_curr;
+        private string previous_fs = "";
 
         /// <summary>
         /// Constructor
@@ -59,15 +59,16 @@ namespace Chinese
             show_word();
         }
 
-        //
-        // for the selected part of speech
-        // set the words in the list
-        //
+        // for the selected part of speech set the words in the list
         /// <summary>
         /// Filter the selected index changed.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void Filters_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Filters.CheckedItems.Count > 0)
@@ -83,15 +84,16 @@ namespace Chinese
             }
         }
 
-        //
-        // from the selected part of speech
-        // get the previous word in the list
-        //
+        // from the selected part of speech get the previous word in the list
         /// <summary>
         /// previous word click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void prevWord_Click(object sender, EventArgs e)
         {
             if (nextword_idx > 0)
@@ -105,18 +107,18 @@ namespace Chinese
             word_curr = nextWordList.ElementAt(nextword_idx);
             word_curr.PartOfSpeech[0] = previous_fs;
             show_word();
-
         }
 
-        //
-        // from the selected part of speech
-        // get the next word in the list
-        //
+        // from the selected part of speech get the next word in the list
         /// <summary>
         /// next word click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void nextWord_Click(object sender, EventArgs e)
         {
             if (nextword_idx < nextWordList.Count - 1)
@@ -133,18 +135,18 @@ namespace Chinese
             show_word();
         }
 
-        //
-        // from the selected part of speech
-        // get a word at random
-        //
+        // from the selected part of speech get a word at random
         /// <summary>
         /// random word click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void rndWord_Click(object sender, EventArgs e)
         {
-
             if (String.Compare(previous_fs, Filters.CheckedItems[0].ToString()) != 0)
             {
                 previous_fs = Filters.SelectedItem.ToString();
@@ -162,8 +164,12 @@ namespace Chinese
         /// <summary>
         /// Saves the words to XML.
         /// </summary>
-        /// <param name="list">The list.</param>
-        /// <param name="fileName">The file name.</param>
+        /// <param name="list">
+        /// The list.
+        /// </param>
+        /// <param name="fileName">
+        /// The file name.
+        /// </param>
         public void SaveWordsToXml(List<Word> list, string fileName)
         {
             string fn = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "data", fileName);
@@ -190,9 +196,7 @@ namespace Chinese
             }
         }
 
-        //
         // show_word: fill the Pinyin text box
-        //
         /// <summary>
         /// show_words the.
         /// </summary>
@@ -264,14 +268,16 @@ namespace Chinese
             this.MeaningTextBox.Text = String.Join(",", word_curr.Meaning);
         }
 
-        // respond to the check-box on the form
-        // clear the pinyin text box
-        // redraw the form
+        // respond to the check-box on the form clear the pinyin text box redraw the form
         /// <summary>
         /// Pinyin_S the checked changed.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void Pinyin_CheckedChanged(object sender, EventArgs e)
         {
             //this.PinYinTextBox.Text = "";
@@ -282,8 +288,12 @@ namespace Chinese
         /// <summary>
         /// Meaning_S the checked changed.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void Meaning_CheckedChanged(object sender, EventArgs e)
         {
             show_word();
@@ -293,20 +303,28 @@ namespace Chinese
         /// <summary>
         /// Hanzi_S the checked changed.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void Hanzi_CheckedChanged(object sender, EventArgs e)
         {
             show_word();
         }
 
-        // respond to the Search Button on the form
-        // find all words from the list that match the search criteria
+        // respond to the Search Button on the form find all words from the list that match the
+        // search criteria
         /// <summary>
         /// Search_S the click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void Search_Click(object sender, EventArgs e)
         {
             foreach (var w in wordList)
@@ -369,15 +387,21 @@ namespace Chinese
 
                 wordList.Add(w);
             }
-            xmlReader.Close();
 
+            this.bindingSource1.DataSource = ds.Tables[0];
+            this.bindingNavigator1.BindingSource = this.bindingSource1;
+            xmlReader.Close();
         }
 
         /// <summary>
         /// News the tool strip menu item_ click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -388,8 +412,12 @@ namespace Chinese
         /// <summary>
         /// Opens the tool strip menu item_ click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog.InitialDirectory = Application.StartupPath;
@@ -403,11 +431,14 @@ namespace Chinese
         /// <summary>
         /// Deletes the tool strip menu item_ click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
@@ -470,50 +501,62 @@ namespace Chinese
         /// Adds the book1 unit1 text3.
         /// </summary>
         private void AddBook1Unit1Text3() { }
+
         /// <summary>
         /// Adds the book1 unit2 text1.
         /// </summary>
         private void AddBook1Unit2Text1() { }
+
         /// <summary>
         /// Adds the book1 unit2 text2.
         /// </summary>
         private void AddBook1Unit2Text2() { }
+
         /// <summary>
         /// Adds the book1 unit2 text3.
         /// </summary>
         private void AddBook1Unit2Text3() { }
+
         /// <summary>
         /// Adds the book1 unit3 text1.
         /// </summary>
         private void AddBook1Unit3Text1() { }
+
         /// <summary>
         /// Adds the book1 unit3 text2.
         /// </summary>
         private void AddBook1Unit3Text2() { }
+
         /// <summary>
         /// Adds the book1 unit3 text3.
         /// </summary>
         private void AddBook1Unit3Text3() { }
+
         /// <summary>
         /// Adds the book1 unit4 text1.
         /// </summary>
         private void AddBook1Unit4Text1() { }
+
         /// <summary>
         /// Adds the book1 unit4 text2.
         /// </summary>
         private void AddBook1Unit4Text2() { }
+
         /// <summary>
         /// Adds the book1 unit4 text3.
         /// </summary>
         private void AddBook1Unit4Text3() { }
+
         /// <summary>
         /// Adds the book1 unit5 text1.
         /// </summary>
         private void AddBook1Unit5Text1() { }
+
         /// <summary>
         /// Adds the book1 unit5 text2.
         /// </summary>
         private void AddBook1Unit5Text2() { }
+
         /// <summary>
         /// Adds the book1 unit5 text3.
         /// </summary>
@@ -522,11 +565,42 @@ namespace Chinese
         /// <summary>
         /// Books the tool strip menu item_ click.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void BooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        }
 
+        /// <summary>
+        /// Handles the Click event of the bindingNavigatorMoveNextItem control.
+        /// </summary>
+        /// <param name="sender">
+        /// The source of the event.
+        /// </param>
+        /// <param name="e">
+        /// The <a onclick="return false;" href="EventArgs" originaltag="see"> EventArgs </a>
+        /// instance containing the event data.
+        /// </param>
+        /// <autogeneratedoc />
+        /// TODO Edit XML Comment Template for bindingNavigatorMoveNextItem_Click
+        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
+        {
+            if (nextword_idx < nextWordList.Count - 1)
+            {
+                nextword_idx++;
+            }
+            else
+            {
+                nextword_idx = 0;
+            }
+
+            word_curr = nextWordList.ElementAt(nextword_idx);
+            word_curr.PartOfSpeech[0] = previous_fs;
+            show_word();
         }
     }
 }
