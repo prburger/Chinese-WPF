@@ -19,7 +19,7 @@ namespace Chinese
         /// </summary>
         public const string defaultList = "wordlist.xml";
 
-        public string WordListFileName = "";
+        public string WordListFileName = "wordlist.xml";
         private TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
         public List<Word> wordList = new List<Word>();
         public List<Word> nextWordList = new List<Word>();
@@ -37,21 +37,6 @@ namespace Chinese
         {
             InitializeComponent();
 
-            /*AddBook1Unit1Text1();
-            AddBook1Unit1Text2();
-            AddBook1Unit1Text3();
-            AddBook1Unit2Text1();
-            AddBook1Unit2Text2();
-            AddBook1Unit2Text3();
-            AddBook1Unit3Text1();
-            AddBook1Unit3Text2();
-            AddBook1Unit3Text3();
-            AddBook1Unit4Text1();
-            AddBook1Unit4Text2();
-            AddBook1Unit4Text3();
-            AddBook1Unit5Text1();
-            AddBook1Unit5Text2();
-            AddBook1Unit5Text3();*/
             ReadFromXmlList();
             word_idx = 0;
             word_curr = (Word)wordList[word_idx];
@@ -83,57 +68,6 @@ namespace Chinese
                 nextWordList = wordList.Where(w => w.PartOfSpeech.Contains(previous_fs)).Select(w => w).ToList();
             }
         }
-
-        // from the selected part of speech get the previous word in the list
-        /// <summary>
-        /// previous word click.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-/*        private void prevWord_Click(object sender, EventArgs e)
-        {
-            if (nextword_idx > 0)
-            {
-                nextword_idx--;
-            }
-            else
-            {
-                nextword_idx = nextWordList.Count - 1;
-            }
-            word_curr = nextWordList.ElementAt(nextword_idx);
-            word_curr.PartOfSpeech[0] = previous_fs;
-            show_word();
-        }*/
-
-        // from the selected part of speech get the next word in the list
-        /// <summary>
-        /// next word click.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-/*        private void nextWord_Click(object sender, EventArgs e)
-        {
-            if (nextword_idx < nextWordList.Count - 1)
-            {
-                nextword_idx++;
-            }
-            else
-            {
-                nextword_idx = 0;
-            }
-
-            word_curr = nextWordList.ElementAt(nextword_idx);
-            word_curr.PartOfSpeech[0] = previous_fs;
-            show_word();
-        }*/
 
         // from the selected part of speech get a word at random
         /// <summary>
@@ -180,19 +114,16 @@ namespace Chinese
                 foreach (var word in list)
                 {
                     writer.WriteStartElement("Word");
-
                     writer.WriteElementString("Pinyin", word.Pinyin);
                     writer.WriteElementString("Character", word.Character);
                     writer.WriteElementString("Meaning", String.Join(",", word.Meaning));
                     writer.WriteElementString("PartOfSpeech", String.Join(",", word.PartOfSpeech));
                     writer.WriteElementString("Formality", word.Formality);
-                    writer.WriteElementString("Book", word.Book.ToString());
-                    writer.WriteElementString("Unit", word.Unit.ToString());
-                    writer.WriteElementString("Kewen", word.Kewen.ToString());
                     writer.WriteEndElement();
                 }
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
+                writer.Close();
             }
         }
 
@@ -378,37 +309,11 @@ namespace Chinese
                 w.Meaning = new string[] { String.Join(",", dr.ItemArray[2]) };
                 w.PartOfSpeech = new string[] { String.Join(",", dr.ItemArray[3]) };
                 w.Formality = dr.ItemArray[4].ToString();
-                if (dr.ItemArray.Length > 6)
-                {
-                    if (dr.ItemArray[5].ToString() != "")
-                    {
-                        w.Book = Int32.Parse(dr.ItemArray[5].ToString());
-                    }
-                    else
-                    {
-                        w.Book = 0;
-                    }
-                    if (dr.ItemArray[6].ToString() != "")
-                    {
-                        w.Unit = Int32.Parse(dr.ItemArray[6].ToString());
-                    }
-                    else
-                    {
-                        w.Unit = 0;
-                    }
-                    if (dr.ItemArray[7].ToString() != "")
-                    {
-                        w.Kewen = Int32.Parse(dr.ItemArray[7].ToString());
-                    }
-                    else
-                    {
-                        w.Kewen = 0;
-                    }
-                }
-
                 wordList.Add(w);
             }
 
+            List<Word> sortedList = wordList.OrderBy(w => w.Pinyin).ToList();
+            wordList = sortedList;
             this.bindingSource1.DataSource = ds.Tables[0];
             this.bindingNavigator1.BindingSource = this.bindingSource1;
             xmlReader.Close();
@@ -467,7 +372,7 @@ namespace Chinese
         /// <summary>
         /// Adds the book1 unit1 text1.
         /// </summary>
-        private void AddBook1Unit1Text1()
+        /*private void AddBook1Unit1Text1()
         {
             List<Word> wordList = new List<Word>();
 
@@ -493,12 +398,12 @@ namespace Chinese
             wordList.Add(new Word("Déguó", "德国", new string[] { "Germany" }, new string[] { "Proper Noun" }, "", 1, 1, 1));
 
             this.SaveWordsToXml(wordList, "book1-unit1-text1.xml");
-        }
+        }*/
 
         /// <summary>
         /// Adds the book1 unit1 text2.
         /// </summary>
-        private void AddBook1Unit1Text2()
+/*        private void AddBook1Unit1Text2()
         {
             List<Word> wordList = new List<Word>();
 
@@ -518,85 +423,7 @@ namespace Chinese
             wordList.Add(new Word("Běijīng", "北京", new string[] { "Beijing", "Peking" }, new string[] { "Proper Noun" }, "", 1, 1, 2));
 
             this.SaveWordsToXml(wordList, "book1-unit1-text2.xml");
-        }
-
-        /// <summary>
-        /// Adds the book1 unit1 text3.
-        /// </summary>
-        private void AddBook1Unit1Text3() { }
-
-        /// <summary>
-        /// Adds the book1 unit2 text1.
-        /// </summary>
-        private void AddBook1Unit2Text1() { }
-
-        /// <summary>
-        /// Adds the book1 unit2 text2.
-        /// </summary>
-        private void AddBook1Unit2Text2() { }
-
-        /// <summary>
-        /// Adds the book1 unit2 text3.
-        /// </summary>
-        private void AddBook1Unit2Text3() { }
-
-        /// <summary>
-        /// Adds the book1 unit3 text1.
-        /// </summary>
-        private void AddBook1Unit3Text1() { }
-
-        /// <summary>
-        /// Adds the book1 unit3 text2.
-        /// </summary>
-        private void AddBook1Unit3Text2() { }
-
-        /// <summary>
-        /// Adds the book1 unit3 text3.
-        /// </summary>
-        private void AddBook1Unit3Text3() { }
-
-        /// <summary>
-        /// Adds the book1 unit4 text1.
-        /// </summary>
-        private void AddBook1Unit4Text1() { }
-
-        /// <summary>
-        /// Adds the book1 unit4 text2.
-        /// </summary>
-        private void AddBook1Unit4Text2() { }
-
-        /// <summary>
-        /// Adds the book1 unit4 text3.
-        /// </summary>
-        private void AddBook1Unit4Text3() { }
-
-        /// <summary>
-        /// Adds the book1 unit5 text1.
-        /// </summary>
-        private void AddBook1Unit5Text1() { }
-
-        /// <summary>
-        /// Adds the book1 unit5 text2.
-        /// </summary>
-        private void AddBook1Unit5Text2() { }
-
-        /// <summary>
-        /// Adds the book1 unit5 text3.
-        /// </summary>
-        private void AddBook1Unit5Text3() { }
-
-        /// <summary>
-        /// Books the tool strip menu item_ click.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private void BooksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
+        }*/
 
         /// <summary>
         /// Handles the Click event of the bindingNavigatorMoveNextItem control.
@@ -658,6 +485,174 @@ namespace Chinese
         {
             DialogResult messageBoxResult = MessageBox.Show(this, "Are you sure?", "Delete Confirmation", MessageBoxButtons.YesNo);
             if (messageBoxResult == DialogResult.Yes) { }
+        }
+
+        /// <summary>
+        /// export menu item_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult messageBoxResult = MessageBox.Show(this, "Are you sure?", "Export Confirmation", MessageBoxButtons.YesNo);
+            if (messageBoxResult == DialogResult.Yes)
+            {
+                openFileDialog.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "data");
+                //Application.StartupPath;
+                DialogResult result = openFileDialog.ShowDialog();
+                if (result == DialogResult.OK) // Test result.
+                {
+                    string importListFileName = openFileDialog.FileName;
+                    this.ExportFromXmlList(wordList, importListFileName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Exports the data from xml list.
+        /// </summary>
+        /// <param name="list">
+        /// The list.
+        /// </param>
+        /// <param name="fileName">
+        /// The file name.
+        /// </param>
+        private void ExportFromXmlList(List<Word> list, string fileName)
+        {
+            string fn = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "data", fileName);
+            using (XmlWriter writer = XmlWriter.Create(fn))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Words");
+                foreach (var word in list)
+                {
+                    writer.WriteStartElement("Word");
+                    writer.WriteElementString("Pinyin", word.Pinyin);
+                    writer.WriteElementString("Character", word.Character);
+                    writer.WriteElementString("Meaning", String.Join(",", word.Meaning));
+                    writer.WriteElementString("PartOfSpeech", String.Join(",", word.PartOfSpeech));
+                    writer.WriteElementString("Formality", word.Formality);
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+                writer.Close();
+            }
+        }
+
+        /// <summary>
+        /// imports the tool strip menu item_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult messageBoxResult = MessageBox.Show(this, "Are you sure?", "Import Confirmation", MessageBoxButtons.YesNo);
+            if (messageBoxResult == DialogResult.Yes)
+            {
+                openFileDialog.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "data");
+                //Application.StartupPath;
+                DialogResult result = openFileDialog.ShowDialog();
+                if (result == DialogResult.OK) // Test result.
+                {
+                    string importListFileName = openFileDialog.FileName;
+                    this.ImportFromXmlList(importListFileName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Imports data from xml file.
+        /// </summary>
+        /// <param name="fileName">
+        /// The file name.
+        /// </param>
+        private void ImportFromXmlList(string fileName)
+        {
+            XmlTextReader xmlReader;
+            xmlReader = new XmlTextReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\data", fileName));
+
+            DataSet ds = new DataSet();
+
+            //read the XML data
+            try
+            {
+                ds.ReadXml(xmlReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            for (int r = 0; r < ds.Tables[0].Rows.Count; r++)
+            {
+                DataRow dr = ds.Tables[0].Rows[r];
+                Word w = new Word();
+                w.Character = dr.ItemArray[0].ToString();
+                w.Pinyin = dr.ItemArray[2].ToString();
+                w.Meaning = new string[] { String.Join(",", dr.ItemArray[3]) };
+                w.PartOfSpeech = new string[] { "" };
+                w.Formality = "";
+                wordList.Add(w);
+            }
+
+            this.bindingSource1.DataSource = ds.Tables[0];
+            this.bindingNavigator1.BindingSource = this.bindingSource1;
+            xmlReader.Close();
+            this.SaveWordsToXml(wordList, "wordlist.xml");
+        }
+
+        /// <summary>
+        /// Delete_S the click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            DialogResult messageBoxResult = MessageBox.Show(this, "Are you sure?", "Delete Confirmation", MessageBoxButtons.YesNo);
+            if (messageBoxResult == DialogResult.Yes)
+            {
+                this.wordList.Remove(this.word_curr);
+                this.SaveWordsToXml(wordList, "wordlist.xml");
+                this.ReadFromXmlList();
+            }
+        }
+
+        /// <summary>
+        /// bindings the navigator move previous item_ click.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
+        {
+            if (nextword_idx > 0)
+            {
+                nextword_idx--;
+            }
+            else
+            {
+                nextword_idx = 0;
+            }
+
+            word_curr = nextWordList.ElementAt(nextword_idx);
+            word_curr.PartOfSpeech[0] = previous_fs;
+            show_word();
         }
     }
 }
