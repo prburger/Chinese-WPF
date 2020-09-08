@@ -483,8 +483,7 @@ namespace Chinese
         /// TODO Edit XML Comment Template for bindingNavigatorDeleteItem_Click
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            DialogResult messageBoxResult = MessageBox.Show(this, "Are you sure?", "Delete Confirmation", MessageBoxButtons.YesNo);
-            if (messageBoxResult == DialogResult.Yes) { }
+            this.Delete_Click(sender, e);
         }
 
         /// <summary>

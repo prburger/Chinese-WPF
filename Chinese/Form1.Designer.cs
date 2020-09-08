@@ -73,7 +73,6 @@ namespace Chinese
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -430,20 +429,9 @@ namespace Chinese
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // Delete
-            // 
-            this.Delete.Location = new System.Drawing.Point(828, 121);
-            this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(75, 23);
-            this.Delete.TabIndex = 26;
-            this.Delete.Text = "&Delete";
-            this.Delete.UseVisualStyleBackColor = true;
-            this.Delete.Click += new System.EventHandler(this.Delete_Click);
-            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(911, 444);
-            this.Controls.Add(this.Delete);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.Pinyin);
@@ -515,7 +503,6 @@ namespace Chinese
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.Button Delete;
     }
 }
 
